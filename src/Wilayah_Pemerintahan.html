@@ -75,46 +75,68 @@
                     <div>
                       <label class="mb-3 block text-sm font-medium text-black dark:text-white">
                         Nama Desa
-                      </label>
-                      <select id="villageNameSelect" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
+                    </label>
+                    <select id="villageNameSelect" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
                         <option value="" class="text-body" disabled selected>Pilih Nama Desa</option>
-                      </select>
-                    
-                      <label class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white">
+                    </select>
+                
+                    <label class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white">
                         Kode Desa
-                      </label>
-                      <select id="villageCodeSelect" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
+                    </label>
+                    <select id="villageCodeSelect" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
                         <option value="" class="text-body" disabled selected>Pilih Kode Desa</option>
-                      </select>
+                    </select>
                       
-                      <script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                          fetch('villages.json')  // Update path if in a subfolder
+                    <script>
+                     document.addEventListener("DOMContentLoaded", function () {
+                        const apiUrl = "https://script.google.com/macros/s/AKfycbxQ6XoS1RW6UZHRxV3dBiVWb2WsIQVNcwI9_yB7FErj5cyXWZ51FTStmTlD_7bAa5zV/exec";  // Update with actual API URL
+
+                        fetch(apiUrl)
                             .then(response => {
-                              if (!response.ok) {
-                                throw new Error("Network response was not ok");
-                              }
-                              return response.json();
+                                if (!response.ok) {
+                                    throw new Error("Network response was not ok");
+                                }
+                                return response.json();
                             })
                             .then(data => {
-                              const villageNameSelect = document.getElementById("villageNameSelect");
-                              const villageCodeSelect = document.getElementById("villageCodeSelect");
-                      
-                              data.forEach(village => {
-                                const nameOption = document.createElement("option");
-                                nameOption.value = village["Nama Desa"];
-                                nameOption.textContent = village["Nama Desa"];
-                                villageNameSelect.appendChild(nameOption);
-                      
-                                const codeOption = document.createElement("option");
-                                codeOption.value = village["Kode Desa"];
-                                codeOption.textContent = village["Kode Desa"];
-                                villageCodeSelect.appendChild(codeOption);
-                              });
+                                console.log("Received data:", data);  // Log data to check the structure
+
+                                // Akses data.data karena data adalah objek yang berisi array di dalam properti data
+                                const villages = data.data; 
+
+                                if (Array.isArray(villages)) {
+                                    const villageNameSelect = document.getElementById("villageNameSelect");
+                                    const villageCodeSelect = document.getElementById("villageCodeSelect");
+
+                                    // Clear previous options
+                                    villageNameSelect.innerHTML = '<option value="" class="text-body" disabled selected>Pilih Nama_Desa</option>';
+                                    villageCodeSelect.innerHTML = '<option value="" class="text-body" disabled selected>Pilih Kode_Desa</option>';
+
+                                    villages.forEach(village => {
+                                        if (village["Nama_Desa"] && village["Kode_Desa"]) {
+                                            // Nama_Desa dropdown
+                                            const nameOption = document.createElement("option");
+                                            nameOption.value = village["Nama_Desa"];
+                                            nameOption.textContent = village["Nama_Desa"];
+                                            villageNameSelect.appendChild(nameOption);
+
+                                            // Kode_Desa dropdown
+                                            const codeOption = document.createElement("option");
+                                            codeOption.value = village["Kode_Desa"];
+                                            codeOption.textContent = village["Kode_Desa"];
+                                            villageCodeSelect.appendChild(codeOption);
+                                        }
+                                    });
+                                } else {
+                                    console.error("Data is not an array.");
+                                }
                             })
-                            .catch(error => console.error("Error loading village data:", error));
-                        });
-                      </script>
+                            .catch(error => {
+                                console.error("Error loading village data:", error);
+                            });
+                    });
+
+                  </script>
                       
                                           
 
