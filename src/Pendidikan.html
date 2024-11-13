@@ -81,8 +81,6 @@
                         <select
                           id="villageNameSelect"
                           class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                          :class="isOptionSelected && 'text-black dark:text-white'"
-                          @change="isOptionSelected = true"
                         >
                           <option value="" class="text-body" disabled selected>
                             Pilih Nama Desa
@@ -97,13 +95,89 @@
                         <select
                           id="villageCodeSelect"
                           class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                          :class="isOptionSelected && 'text-black dark:text-white'"
-                          @change="isOptionSelected = true"
                         >
                           <option value="" class="text-body" disabled selected>
                             Pilih Kode Desa
                           </option>
                         </select>
+
+                        <script>
+                          document.addEventListener(
+                            'DOMContentLoaded',
+                            function () {
+                              const apiUrl =
+                                'https://script.google.com/macros/s/AKfycbxQ6XoS1RW6UZHRxV3dBiVWb2WsIQVNcwI9_yB7FErj5cyXWZ51FTStmTlD_7bAa5zV/exec'; // Update with actual API URL
+
+                              fetch(apiUrl)
+                                .then((response) => {
+                                  if (!response.ok) {
+                                    throw new Error(
+                                      'Network response was not ok'
+                                    );
+                                  }
+                                  return response.json();
+                                })
+                                .then((data) => {
+                                  console.log('Received data:', data); // Log data to check the structure
+
+                                  // Akses data.data karena data adalah objek yang berisi array di dalam properti data
+                                  const villages = data.data;
+
+                                  if (Array.isArray(villages)) {
+                                    const villageNameSelect =
+                                      document.getElementById(
+                                        'villageNameSelect'
+                                      );
+                                    const villageCodeSelect =
+                                      document.getElementById(
+                                        'villageCodeSelect'
+                                      );
+
+                                    // Clear previous options
+                                    villageNameSelect.innerHTML =
+                                      '<option value="" class="text-body" disabled selected>Pilih Nama Desa</option>';
+                                    villageCodeSelect.innerHTML =
+                                      '<option value="" class="text-body" disabled selected>Pilih Kode Desa</option>';
+
+                                    villages.forEach((village) => {
+                                      if (
+                                        village['Nama_Desa'] &&
+                                        village['Kode_Desa']
+                                      ) {
+                                        // Nama_Desa dropdown
+                                        const nameOption =
+                                          document.createElement('option');
+                                        nameOption.value = village['Nama_Desa'];
+                                        nameOption.textContent =
+                                          village['Nama_Desa'];
+                                        villageNameSelect.appendChild(
+                                          nameOption
+                                        );
+
+                                        // Kode_Desa dropdown
+                                        const codeOption =
+                                          document.createElement('option');
+                                        codeOption.value = village['Kode_Desa'];
+                                        codeOption.textContent =
+                                          village['Kode_Desa'];
+                                        villageCodeSelect.appendChild(
+                                          codeOption
+                                        );
+                                      }
+                                    });
+                                  } else {
+                                    console.error('Data is not an array.');
+                                  }
+                                })
+                                .catch((error) => {
+                                  console.error(
+                                    'Error loading village data:',
+                                    error
+                                  );
+                                });
+                            }
+                          );
+                        </script>
                       </div>
                     </div>
                   </div>
@@ -122,7 +196,7 @@
                       <div class="flex flex-col gap-5.5 p-6.5">
                         <div class=" " id="SekolahContainer">
                           <!-- Dynamic Potensi Wisata Fields Start -->
-                          <div class="daftar-sekolah-fields ">
+                          <div class="daftar-sekolah-fields">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
@@ -383,7 +457,6 @@
                               Tambah Pondok Pesantren
                             </button>
                           </div>
-                         
 
                           <!-- data inputan sekolah end -->
                         </div>
@@ -427,38 +500,41 @@
       // menabhah form sekolah
 
       function addSekolahFields() {
-    // Clone the first 'daftar-sekolah-fields' div
-    const container = document.getElementById('SekolahContainer');
-    const fields = document.querySelector('.daftar-sekolah-fields');
-    const clone = fields.cloneNode(true);
+        // Clone the first 'daftar-sekolah-fields' div
+        const container = document.getElementById('SekolahContainer');
+        const fields = document.querySelector('.daftar-sekolah-fields');
+        const clone = fields.cloneNode(true);
 
-    // Clear values in the cloned fields
-    const inputs = clone.querySelectorAll('input');
-    const selects = clone.querySelectorAll('select');
+        // Clear values in the cloned fields
+        const inputs = clone.querySelectorAll('input');
+        const selects = clone.querySelectorAll('select');
 
-    inputs.forEach((input) => (input.value = ''));
-    selects.forEach((select) => (select.selectedIndex = 0));
+        inputs.forEach((input) => (input.value = ''));
+        selects.forEach((select) => (select.selectedIndex = 0));
 
-    // Create a delete button and add it to the clone
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Hapus Sekolah';
-    deleteButton.type = 'button';
+        // Create a delete button and add it to the clone
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Hapus Sekolah';
+        deleteButton.type = 'button';
 
-    // Add Tailwind classes for styling (optional)
-    deleteButton.className = 'mt-5 inline-flex items-center justify-center rounded-md bg-red-500 px-5 py-3 text-center font-medium text-white hover:bg-opacity-90';
+        // Add Tailwind classes for styling (optional)
+        deleteButton.className =
+          'mt-5 inline-flex items-center justify-center rounded-md bg-red-500 px-5 py-3 text-center font-medium text-white hover:bg-opacity-90';
 
-    // Add delete functionality to remove the cloned element
-    deleteButton.onclick = function() {
-        container.removeChild(clone);
-    };
+        // Add delete functionality to remove the cloned element
+        deleteButton.onclick = function () {
+          container.removeChild(clone);
+        };
 
-    // Append the delete button to the clone
-    clone.appendChild(deleteButton);
+        // Append the delete button to the clone
+        clone.appendChild(deleteButton);
 
-    // Append the cleared clone to the container
-    container.appendChild(clone);
-}
+        // Append the cleared clone to the container
+        container.appendChild(clone);
 
+        // Tambahkan margin atas pada elemen kloning
+        clone.classList.add('mt-5');
+      }
 
       // menambah form pondok pesantren
       function addPondokPesantrenFields() {
@@ -474,21 +550,22 @@
         inputs.forEach((input) => (input.value = ''));
         selects.forEach((select) => (select.selectedIndex = 0));
 
-         // Create a delete button and add it to the clone
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Hapus Sekolah';
-    deleteButton.type = 'button';
+        // Create a delete button and add it to the clone
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Hapus Sekolah';
+        deleteButton.type = 'button';
 
-    // Add Tailwind classes for styling (optional)
-    deleteButton.className = 'mt-5 inline-flex items-center justify-center rounded-md bg-red-500 px-5 py-3 text-center font-medium text-white hover:bg-opacity-90';
+        // Add Tailwind classes for styling (optional)
+        deleteButton.className =
+          'mt-5 inline-flex items-center justify-center rounded-md bg-red-500 px-5 py-3 text-center font-medium text-white hover:bg-opacity-90';
 
-    // Add delete functionality to remove the cloned element
-    deleteButton.onclick = function() {
-        container.removeChild(clone);
-    };
+        // Add delete functionality to remove the cloned element
+        deleteButton.onclick = function () {
+          container.removeChild(clone);
+        };
 
-    // Append the delete button to the clone
-    clone.appendChild(deleteButton);
+        // Append the delete button to the clone
+        clone.appendChild(deleteButton);
 
         // Append the cleared clone to the container
         container.appendChild(clone);
