@@ -73,23 +73,50 @@
                   </div>
                   <div class="flex flex-col gap-5.5 p-6.5">
                     <div>
-                      <label
-                      class="mb-3 block text-sm font-medium text-black dark:text-white"
-                    >
-                      Nama Desa
-                    </label>
-                    <select id="villageNameSelect" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input" :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
-                      <option value="" class="text-body" disabled selected>Pilih Nama Desa</option>
-                    </select>
-                      
-                      <label
-                        class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                      >
+                      <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                        Nama Desa
+                      </label>
+                      <select id="villageNameSelect" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
+                        <option value="" class="text-body" disabled selected>Pilih Nama Desa</option>
+                      </select>
+                    
+                      <label class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white">
                         Kode Desa
                       </label>
-                      <select id="villageCodeSelect" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input" :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
+                      <select id="villageCodeSelect" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
                         <option value="" class="text-body" disabled selected>Pilih Kode Desa</option>
                       </select>
+                      
+                      <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                          fetch('villages.json')  // Update path if in a subfolder
+                            .then(response => {
+                              if (!response.ok) {
+                                throw new Error("Network response was not ok");
+                              }
+                              return response.json();
+                            })
+                            .then(data => {
+                              const villageNameSelect = document.getElementById("villageNameSelect");
+                              const villageCodeSelect = document.getElementById("villageCodeSelect");
+                      
+                              data.forEach(village => {
+                                const nameOption = document.createElement("option");
+                                nameOption.value = village["Nama Desa"];
+                                nameOption.textContent = village["Nama Desa"];
+                                villageNameSelect.appendChild(nameOption);
+                      
+                                const codeOption = document.createElement("option");
+                                codeOption.value = village["Kode Desa"];
+                                codeOption.textContent = village["Kode Desa"];
+                                villageCodeSelect.appendChild(codeOption);
+                              });
+                            })
+                            .catch(error => console.error("Error loading village data:", error));
+                        });
+                      </script>
+                      
+                                          
 
                       <label
                         class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
