@@ -61,7 +61,53 @@
               <div class="flex flex-col gap-9">
                 <form action="" method="post">
                   <!-- Input Fields -->
-                  <div class="pendidikan_formal">
+                  <div class="dataDesa">
+                    <div
+                      class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
+                    >
+                      <div
+                        class="border-b border-stroke px-6.5 py-4 dark:border-strokedark"
+                      >
+                        <h3 class="font-bold text-black dark:text-white">
+                          Data Desa
+                        </h3>
+                      </div>
+                      <div class="flex flex-col gap-5.5 p-6.5">
+                        <label
+                          class="mb-3 block text-sm font-medium text-black dark:text-white"
+                        >
+                          Nama Desa
+                        </label>
+                        <select
+                          id="villageNameSelect"
+                          class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                          :class="isOptionSelected && 'text-black dark:text-white'"
+                          @change="isOptionSelected = true"
+                        >
+                          <option value="" class="text-body" disabled selected>
+                            Pilih Nama Desa
+                          </option>
+                        </select>
+
+                        <label
+                          class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
+                        >
+                          Kode Desa
+                        </label>
+                        <select
+                          id="villageCodeSelect"
+                          class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                          :class="isOptionSelected && 'text-black dark:text-white'"
+                          @change="isOptionSelected = true"
+                        >
+                          <option value="" class="text-body" disabled selected>
+                            Pilih Kode Desa
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pendidikanFormal mt-10">
                     <div
                       class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
                     >
@@ -74,314 +120,128 @@
                         </h3>
                       </div>
                       <div class="flex flex-col gap-5.5 p-6.5">
-                        <div>
-                          <label
-                            class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                          >
-                            Kode Desa
-                          </label>
-                          <select
-                            class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                            :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                            @change="isOptionSelected = true"
-                          >
-                            <option
-                              value=""
-                              class="text-body"
-                              disabled
-                              selected
+                        <div class=" " id="SekolahContainer">
+                          <!-- Dynamic Potensi Wisata Fields Start -->
+                          <div class="daftar-sekolah-fields ">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              Pilih Kode Desa
-                            </option>
-                            <option value="" class="text-body">Option 1</option>
-                            <option value="" class="text-body">Option 2</option>
-                            <option value="" class="text-body">Option 3</option>
-                          </select>
+                              Nama Sekolah
+                            </label>
+                            <input
+                              type="text"
+                              placeholder="Nama Sekolah"
+                              class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            />
 
-                          <label
-                            class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                          >
-                            Nama Desa
-                          </label>
-
-                          <select
-                            class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                            :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                            @change="isOptionSelected = true"
-                          >
-                            <option
-                              value=""
-                              class="text-body"
-                              disabled
-                              selected
+                            <label
+                              class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
                             >
-                              Pilih Nama Desa
-                            </option>
+                              Alamat Sekolah
+                            </label>
+                            <textarea
+                              rows="6"
+                              placeholder="Default textarea"
+                              class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              style="height: 66px"
+                            >
+                            </textarea>
 
-                            <option value="" class="text-body">Option 1</option>
-                            <option value="" class="text-body">Option 2</option>
-                            <option value="" class="text-body">Option 3</option>
-                          </select>
+                            <label
+                              class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Jenjang Pendidikan
+                            </label>
+                            <select
+                              class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                              :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
+                              @change="isOptionSelected = true"
+                            >
+                              <option
+                                value=""
+                                class="text-body"
+                                disabled
+                                selected
+                              >
+                                Pilih Jenjang Pendidikan
+                              </option>
+                              <option value="" class="text-body">
+                                TK/PAUD
+                              </option>
+                              <option value="" class="text-body">SD/MI</option>
+                              <option value="" class="text-body">
+                                SMP/MTs
+                              </option>
+                              <option value="" class="text-body">SMA/MA</option>
+                              <option value="" class="text-body">
+                                PERGURUAN TINGGI
+                              </option>
+                              <option value="" class="text-body">SLB</option>
+                            </select>
 
-                          <!-- data inputan sekolah start -->
-                          <!-- <div id="dataSekolah">
-                            <div class="potensi-wisata-fields">
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
+                            <label
+                              class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Status Sekolah
+                            </label>
+                            <select
+                              class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                              :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
+                              @change="isOptionSelected = true"
+                            >
+                              <option
+                                value=""
+                                class="text-body"
+                                disabled
+                                selected
                               >
-                                Nama Sekolah
-                              </label>
-                              <input
-                                type="text"
-                                placeholder="Nama Sekolah"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              />
+                                Pilih Status Sekolah
+                              </option>
+                              <option value="" class="text-body">NEGERI</option>
+                              <option value="" class="text-body">SWASTA</option>
+                            </select>
 
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Alamat Sekolah
-                              </label>
-                              <textarea
-                                rows="6"
-                                placeholder="Default textarea"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                style="height: 66px"
-                              >
-                              </textarea>
+                            <label
+                              class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Titik Koordinat
+                            </label>
 
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Jenjang Pendidikan
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
+                            <div class="flex w-full space-x-5">
+                              <div class="koordinat_lintang w-full">
+                                <label
+                                  class="mb-5 block text-sm font-medium text-black dark:text-white"
                                 >
-                                  Pilih Jenjang Pendidikan
-                                </option>
-                                <option value="" class="text-body">
-                                  TK/PAUD
-                                </option>
-                                <option value="" class="text-body">
-                                  SD/MI
-                                </option>
-                                <option value="" class="text-body">
-                                  SMP/MTs
-                                </option>
-                                <option value="" class="text-body">
-                                  SMA/MA
-                                </option>
-                                <option value="" class="text-body">
-                                  PERGURUAN TINGGI
-                                </option>
-                                <option value="" class="text-body">SLB</option>
-                              </select>
+                                  KoordinatLintang
+                                </label>
+                                <input
+                                  type="text"
+                                  placeholder="-6.8796 LS"
+                                  class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                                />
+                              </div>
 
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Status Sekolah
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
+                              <div class="koordinat_bujur w-full">
+                                <label
+                                  class="mb-5 block text-sm font-medium text-black dark:text-white"
                                 >
-                                  Pilih Status Sekolah
-                                </option>
-                                <option value="" class="text-body">
-                                  NEGERI
-                                </option>
-                                <option value="" class="text-body">
-                                  SWASTA
-                                </option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Titik Koordinat
-                              </label>
-
-                              <div class="flex w-full space-x-5">
-                                <div class="koordinat_lintang w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Lintang
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="-6.8796 LS"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-
-                                <div class="koordinat_bujur w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Bujur
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="108.5538 BT"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
+                                  Koordinat Bujur
+                                </label>
+                                <input
+                                  type="text"
+                                  placeholder="108.5538 BT"
+                                  class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                                />
                               </div>
                             </div>
-
-                           
-
-                            <button type="button" onclick="addSekolah()"
-                                                class="mt-5 inline-flex items-center justify-center rounded-md bg-primary px-5 py-3 text-center font-medium text-white hover:bg-opacity-90">
-                                                Tambah Potensi Wisata
-                                            </button>
-                          </div> -->
-
-                          <div class=" " id="potensiWisataContainer">
-                                                <!-- Dynamic Potensi Wisata Fields Start -->
-                                                <div class="potensi-wisata-fields">
-                                                     <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Nama Sekolah
-                              </label>
-                              <input
-                                type="text"
-                                placeholder="Nama Sekolah"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              />
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Alamat Sekolah
-                              </label>
-                              <textarea
-                                rows="6"
-                                placeholder="Default textarea"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                style="height: 66px"
-                              >
-                              </textarea>
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Jenjang Pendidikan
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
-                                >
-                                  Pilih Jenjang Pendidikan
-                                </option>
-                                <option value="" class="text-body">
-                                  TK/PAUD
-                                </option>
-                                <option value="" class="text-body">
-                                  SD/MI
-                                </option>
-                                <option value="" class="text-body">
-                                  SMP/MTs
-                                </option>
-                                <option value="" class="text-body">
-                                  SMA/MA
-                                </option>
-                                <option value="" class="text-body">
-                                  PERGURUAN TINGGI
-                                </option>
-                                <option value="" class="text-body">SLB</option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Status Sekolah
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
-                                >
-                                  Pilih Status Sekolah
-                                </option>
-                                <option value="" class="text-body">
-                                  NEGERI
-                                </option>
-                                <option value="" class="text-body">
-                                  SWASTA
-                                </option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Titik Koordinat
-                              </label>
-
-                              <div class="flex w-full space-x-5">
-                                <div class="koordinat_lintang w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    KoordinatLintang
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="-6.8796 LS"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-
-                                <div class="koordinat_bujur w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Bujur
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="108.5538 BT"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-                              </div>
-                                                <button type="button" onclick="addPotensiWisataFields()"
-                                                class="mt-5 inline-flex items-center justify-center rounded-md bg-primary px-5 py-3 text-center font-medium text-white hover:bg-opacity-90">
-                                                Tambah Potensi Wisata
-                                            </button>
-                                            </div>
+                            <button
+                              type="button"
+                              onclick="addSekolahFields()"
+                              class="mt-5 inline-flex items-center justify-center rounded-md bg-primary px-5 py-3 text-center font-medium text-white hover:bg-opacity-90"
+                            >
+                              Tambah Daftar Sekolah
+                            </button>
+                          </div>
 
                           <!-- data inputan sekolah end -->
                         </div>
@@ -389,7 +249,7 @@
                     </div>
                   </div>
 
-                  <div class="pondok_pesantren mt-10">
+                  <div class="pondokPesantren mt-10">
                     <div
                       class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
                     >
@@ -397,1160 +257,133 @@
                         class="border-b border-stroke px-6.5 py-4 dark:border-strokedark"
                       >
                         <h3 class="font-bold text-black dark:text-white">
-                          Daftar Sekolah/Lembaga Pendidikan Formal Penduduk
-                          Menurut Desa/Kelurahan
+                          Daftar Pondok Pesantren Menurut Desa/Kelurahan
                         </h3>
                       </div>
                       <div class="flex flex-col gap-5.5 p-6.5">
-                        <div>
-                          <label
-                            class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                          >
-                            Kode Desa
-                          </label>
-                          <select
-                            class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                            :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                            @change="isOptionSelected = true"
-                          >
-                            <option
-                              value=""
-                              class="text-body"
-                              disabled
-                              selected
+                        <div class=" " id="pondokPesantren">
+                          <!-- Dynamic Potensi Pondok Pesantren Fields Start -->
+                          <div class="daftar-pondokPesantren-fields">
+                            <label
+                              class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
-                              Pilih Kode Desa
-                            </option>
-                            <option value="" class="text-body">Option 1</option>
-                            <option value="" class="text-body">Option 2</option>
-                            <option value="" class="text-body">Option 3</option>
-                          </select>
+                              Nama Sekolah
+                            </label>
+                            <input
+                              type="text"
+                              placeholder="Nama Sekolah"
+                              class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            />
 
-                          <label
-                            class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                          >
-                            Nama Desa
-                          </label>
-
-                          <select
-                            class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                            :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                            @change="isOptionSelected = true"
-                          >
-                            <option
-                              value=""
-                              class="text-body"
-                              disabled
-                              selected
+                            <label
+                              class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
                             >
-                              Pilih Nama Desa
-                            </option>
+                              Alamat Sekolah
+                            </label>
+                            <textarea
+                              rows="6"
+                              placeholder="Default textarea"
+                              class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                              style="height: 66px"
+                            >
+                            </textarea>
 
-                            <option value="" class="text-body">Option 1</option>
-                            <option value="" class="text-body">Option 2</option>
-                            <option value="" class="text-body">Option 3</option>
-                          </select>
+                            <label
+                              class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Jenjang Pendidikan
+                            </label>
+                            <select
+                              class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                              :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
+                              @change="isOptionSelected = true"
+                            >
+                              <option
+                                value=""
+                                class="text-body"
+                                disabled
+                                selected
+                              >
+                                Pilih Jenjang Pendidikan
+                              </option>
+                              <option value="" class="text-body">
+                                TK/PAUD
+                              </option>
+                              <option value="" class="text-body">SD/MI</option>
+                              <option value="" class="text-body">
+                                SMP/MTs
+                              </option>
+                              <option value="" class="text-body">SMA/MA</option>
+                              <option value="" class="text-body">
+                                PERGURUAN TINGGI
+                              </option>
+                              <option value="" class="text-body">SLB</option>
+                            </select>
 
-                          <!-- data inputan sekolah start -->
-                          <div class="dataSekolah">
-                            <div class="inputanDataSekolah_ke1">
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
+                            <label
+                              class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Status Sekolah
+                            </label>
+                            <select
+                              class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                              :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
+                              @change="isOptionSelected = true"
+                            >
+                              <option
+                                value=""
+                                class="text-body"
+                                disabled
+                                selected
                               >
-                                Nama Sekolah
-                              </label>
-                              <input
-                                type="text"
-                                placeholder="Nama Sekolah"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              />
+                                Pilih Status Sekolah
+                              </option>
+                              <option value="" class="text-body">NEGERI</option>
+                              <option value="" class="text-body">SWASTA</option>
+                            </select>
 
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Alamat Sekolah
-                              </label>
-                              <textarea
-                                rows="6"
-                                placeholder="Default textarea"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                style="height: 66px"
-                              >
-                              </textarea>
+                            <label
+                              class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
+                            >
+                              Titik Koordinat
+                            </label>
 
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Jenjang Pendidikan
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
+                            <div class="flex w-full space-x-5">
+                              <div class="koordinat_lintang w-full">
+                                <label
+                                  class="mb-5 block text-sm font-medium text-black dark:text-white"
                                 >
-                                  Pilih Jenjang Pendidikan
-                                </option>
-                                <option value="" class="text-body">
-                                  TK/PAUD
-                                </option>
-                                <option value="" class="text-body">
-                                  SD/MI
-                                </option>
-                                <option value="" class="text-body">
-                                  SMP/MTs
-                                </option>
-                                <option value="" class="text-body">
-                                  SMA/MA
-                                </option>
-                                <option value="" class="text-body">
-                                  PERGURUAN TINGGI
-                                </option>
-                                <option value="" class="text-body">SLB</option>
-                              </select>
+                                  KoordinatLintang
+                                </label>
+                                <input
+                                  type="text"
+                                  placeholder="-6.8796 LS"
+                                  class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                                />
+                              </div>
 
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Status Sekolah
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
+                              <div class="koordinat_bujur w-full">
+                                <label
+                                  class="mb-5 block text-sm font-medium text-black dark:text-white"
                                 >
-                                  Pilih Status Sekolah
-                                </option>
-                                <option value="" class="text-body">
-                                  NEGERI
-                                </option>
-                                <option value="" class="text-body">
-                                  SWASTA
-                                </option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Titik Koordinat
-                              </label>
-
-                              <div class="flex w-full space-x-5">
-                                <div class="koordinat_lintang w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Lintang
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="-6.8796 LS"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-
-                                <div class="koordinat_bujur w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Bujur
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="108.5538 BT"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
+                                  Koordinat Bujur
+                                </label>
+                                <input
+                                  type="text"
+                                  placeholder="108.5538 BT"
+                                  class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                                />
                               </div>
                             </div>
-
-                            <div class="inputanDataSekolah_ke2 hidden">
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Nama Sekolah
-                              </label>
-                              <input
-                                type="text"
-                                placeholder="Nama Sekolah"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              />
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Alamat Sekolah
-                              </label>
-                              <textarea
-                                rows="6"
-                                placeholder="Default textarea"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                style="height: 66px"
-                              >
-                              </textarea>
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Jenjang Pendidikan
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
-                                >
-                                  Pilih Jenjang Pendidikan
-                                </option>
-                                <option value="" class="text-body">
-                                  TK/PAUD
-                                </option>
-                                <option value="" class="text-body">
-                                  SD/MI
-                                </option>
-                                <option value="" class="text-body">
-                                  SMP/MTs
-                                </option>
-                                <option value="" class="text-body">
-                                  SMA/MA
-                                </option>
-                                <option value="" class="text-body">
-                                  PERGURUAN TINGGI
-                                </option>
-                                <option value="" class="text-body">SLB</option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Status Sekolah
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
-                                >
-                                  Pilih Status Sekolah
-                                </option>
-                                <option value="" class="text-body">
-                                  NEGERI
-                                </option>
-                                <option value="" class="text-body">
-                                  SWASTA
-                                </option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Titik Koordinat
-                              </label>
-
-                              <div class="flex w-full space-x-5">
-                                <div class="koordinat_lintang w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Lintang
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="-6.8796 LS"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-
-                                <div class="koordinat_bujur w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Bujur
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="108.5538 BT"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="inputanDataSekolah_ke3 hidden">
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Nama Sekolah
-                              </label>
-                              <input
-                                type="text"
-                                placeholder="Nama Sekolah"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              />
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Alamat Sekolah
-                              </label>
-                              <textarea
-                                rows="6"
-                                placeholder="Default textarea"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                style="height: 66px"
-                              >
-                              </textarea>
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Jenjang Pendidikan
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
-                                >
-                                  Pilih Jenjang Pendidikan
-                                </option>
-                                <option value="" class="text-body">
-                                  TK/PAUD
-                                </option>
-                                <option value="" class="text-body">
-                                  SD/MI
-                                </option>
-                                <option value="" class="text-body">
-                                  SMP/MTs
-                                </option>
-                                <option value="" class="text-body">
-                                  SMA/MA
-                                </option>
-                                <option value="" class="text-body">
-                                  PERGURUAN TINGGI
-                                </option>
-                                <option value="" class="text-body">SLB</option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Status Sekolah
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
-                                >
-                                  Pilih Status Sekolah
-                                </option>
-                                <option value="" class="text-body">
-                                  NEGERI
-                                </option>
-                                <option value="" class="text-body">
-                                  SWASTA
-                                </option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Titik Koordinat
-                              </label>
-
-                              <div class="flex w-full space-x-5">
-                                <div class="koordinat_lintang w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Lintang
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="-6.8796 LS"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-
-                                <div class="koordinat_bujur w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Bujur
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="108.5538 BT"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="inputanDataSekolah_ke4 hidden">
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Nama Sekolah
-                              </label>
-                              <input
-                                type="text"
-                                placeholder="Nama Sekolah"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              />
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Alamat Sekolah
-                              </label>
-                              <textarea
-                                rows="6"
-                                placeholder="Default textarea"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                style="height: 66px"
-                              >
-                              </textarea>
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Jenjang Pendidikan
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
-                                >
-                                  Pilih Jenjang Pendidikan
-                                </option>
-                                <option value="" class="text-body">
-                                  TK/PAUD
-                                </option>
-                                <option value="" class="text-body">
-                                  SD/MI
-                                </option>
-                                <option value="" class="text-body">
-                                  SMP/MTs
-                                </option>
-                                <option value="" class="text-body">
-                                  SMA/MA
-                                </option>
-                                <option value="" class="text-body">
-                                  PERGURUAN TINGGI
-                                </option>
-                                <option value="" class="text-body">SLB</option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Status Sekolah
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
-                                >
-                                  Pilih Status Sekolah
-                                </option>
-                                <option value="" class="text-body">
-                                  NEGERI
-                                </option>
-                                <option value="" class="text-body">
-                                  SWASTA
-                                </option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Titik Koordinat
-                              </label>
-
-                              <div class="flex w-full space-x-5">
-                                <div class="koordinat_lintang w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Lintang
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="-6.8796 LS"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-
-                                <div class="koordinat_bujur w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Bujur
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="108.5538 BT"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="inputanDataSekolah_ke6 hidden">
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Nama Sekolah
-                              </label>
-                              <input
-                                type="text"
-                                placeholder="Nama Sekolah"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              />
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Alamat Sekolah
-                              </label>
-                              <textarea
-                                rows="6"
-                                placeholder="Default textarea"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                style="height: 66px"
-                              >
-                              </textarea>
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Jenjang Pendidikan
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
-                                >
-                                  Pilih Jenjang Pendidikan
-                                </option>
-                                <option value="" class="text-body">
-                                  TK/PAUD
-                                </option>
-                                <option value="" class="text-body">
-                                  SD/MI
-                                </option>
-                                <option value="" class="text-body">
-                                  SMP/MTs
-                                </option>
-                                <option value="" class="text-body">
-                                  SMA/MA
-                                </option>
-                                <option value="" class="text-body">
-                                  PERGURUAN TINGGI
-                                </option>
-                                <option value="" class="text-body">SLB</option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Status Sekolah
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
-                                >
-                                  Pilih Status Sekolah
-                                </option>
-                                <option value="" class="text-body">
-                                  NEGERI
-                                </option>
-                                <option value="" class="text-body">
-                                  SWASTA
-                                </option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Titik Koordinat
-                              </label>
-
-                              <div class="flex w-full space-x-5">
-                                <div class="koordinat_lintang w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Lintang
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="-6.8796 LS"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-
-                                <div class="koordinat_bujur w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Bujur
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="108.5538 BT"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="inputanDataSekolah_ke7 hidden">
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Nama Sekolah
-                              </label>
-                              <input
-                                type="text"
-                                placeholder="Nama Sekolah"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              />
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Alamat Sekolah
-                              </label>
-                              <textarea
-                                rows="6"
-                                placeholder="Default textarea"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                style="height: 66px"
-                              >
-                              </textarea>
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Jenjang Pendidikan
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
-                                >
-                                  Pilih Jenjang Pendidikan
-                                </option>
-                                <option value="" class="text-body">
-                                  TK/PAUD
-                                </option>
-                                <option value="" class="text-body">
-                                  SD/MI
-                                </option>
-                                <option value="" class="text-body">
-                                  SMP/MTs
-                                </option>
-                                <option value="" class="text-body">
-                                  SMA/MA
-                                </option>
-                                <option value="" class="text-body">
-                                  PERGURUAN TINGGI
-                                </option>
-                                <option value="" class="text-body">SLB</option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Status Sekolah
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
-                                >
-                                  Pilih Status Sekolah
-                                </option>
-                                <option value="" class="text-body">
-                                  NEGERI
-                                </option>
-                                <option value="" class="text-body">
-                                  SWASTA
-                                </option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Titik Koordinat
-                              </label>
-
-                              <div class="flex w-full space-x-5">
-                                <div class="koordinat_lintang w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Lintang
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="-6.8796 LS"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-
-                                <div class="koordinat_bujur w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Bujur
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="108.5538 BT"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="inputanDataSekolah_ke8 hidden">
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Nama Sekolah
-                              </label>
-                              <input
-                                type="text"
-                                placeholder="Nama Sekolah"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              />
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Alamat Sekolah
-                              </label>
-                              <textarea
-                                rows="6"
-                                placeholder="Default textarea"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                style="height: 66px"
-                              >
-                              </textarea>
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Jenjang Pendidikan
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
-                                >
-                                  Pilih Jenjang Pendidikan
-                                </option>
-                                <option value="" class="text-body">
-                                  TK/PAUD
-                                </option>
-                                <option value="" class="text-body">
-                                  SD/MI
-                                </option>
-                                <option value="" class="text-body">
-                                  SMP/MTs
-                                </option>
-                                <option value="" class="text-body">
-                                  SMA/MA
-                                </option>
-                                <option value="" class="text-body">
-                                  PERGURUAN TINGGI
-                                </option>
-                                <option value="" class="text-body">SLB</option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Status Sekolah
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
-                                >
-                                  Pilih Status Sekolah
-                                </option>
-                                <option value="" class="text-body">
-                                  NEGERI
-                                </option>
-                                <option value="" class="text-body">
-                                  SWASTA
-                                </option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Titik Koordinat
-                              </label>
-
-                              <div class="flex w-full space-x-5">
-                                <div class="koordinat_lintang w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Lintang
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="-6.8796 LS"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-
-                                <div class="koordinat_bujur w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Bujur
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="108.5538 BT"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="inputanDataSekolah_ke9 hidden">
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Nama Sekolah
-                              </label>
-                              <input
-                                type="text"
-                                placeholder="Nama Sekolah"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              />
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Alamat Sekolah
-                              </label>
-                              <textarea
-                                rows="6"
-                                placeholder="Default textarea"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                style="height: 66px"
-                              >
-                              </textarea>
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Jenjang Pendidikan
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
-                                >
-                                  Pilih Jenjang Pendidikan
-                                </option>
-                                <option value="" class="text-body">
-                                  TK/PAUD
-                                </option>
-                                <option value="" class="text-body">
-                                  SD/MI
-                                </option>
-                                <option value="" class="text-body">
-                                  SMP/MTs
-                                </option>
-                                <option value="" class="text-body">
-                                  SMA/MA
-                                </option>
-                                <option value="" class="text-body">
-                                  PERGURUAN TINGGI
-                                </option>
-                                <option value="" class="text-body">SLB</option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Status Sekolah
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
-                                >
-                                  Pilih Status Sekolah
-                                </option>
-                                <option value="" class="text-body">
-                                  NEGERI
-                                </option>
-                                <option value="" class="text-body">
-                                  SWASTA
-                                </option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Titik Koordinat
-                              </label>
-
-                              <div class="flex w-full space-x-5">
-                                <div class="koordinat_lintang w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Lintang
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="-6.8796 LS"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-
-                                <div class="koordinat_bujur w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Bujur
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="108.5538 BT"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="inputanDataSekolah_ke10 hidden">
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Nama Sekolah
-                              </label>
-                              <input
-                                type="text"
-                                placeholder="Nama Sekolah"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                              />
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Alamat Sekolah
-                              </label>
-                              <textarea
-                                rows="6"
-                                placeholder="Default textarea"
-                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                style="height: 66px"
-                              >
-                              </textarea>
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Jenjang Pendidikan
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
-                                >
-                                  Pilih Jenjang Pendidikan
-                                </option>
-                                <option value="" class="text-body">
-                                  TK/PAUD
-                                </option>
-                                <option value="" class="text-body">
-                                  SD/MI
-                                </option>
-                                <option value="" class="text-body">
-                                  SMP/MTs
-                                </option>
-                                <option value="" class="text-body">
-                                  SMA/MA
-                                </option>
-                                <option value="" class="text-body">
-                                  PERGURUAN TINGGI
-                                </option>
-                                <option value="" class="text-body">SLB</option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Status Sekolah
-                              </label>
-                              <select
-                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                @change="isOptionSelected = true"
-                              >
-                                <option
-                                  value=""
-                                  class="text-body"
-                                  disabled
-                                  selected
-                                >
-                                  Pilih Status Sekolah
-                                </option>
-                                <option value="" class="text-body">
-                                  NEGERI
-                                </option>
-                                <option value="" class="text-body">
-                                  SWASTA
-                                </option>
-                              </select>
-
-                              <label
-                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white"
-                              >
-                                Titik Koordinat
-                              </label>
-
-                              <div class="flex w-full space-x-5">
-                                <div class="koordinat_lintang w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Lintang
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="-6.8796 LS"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-
-                                <div class="koordinat_bujur w-full">
-                                  <label
-                                    class="mb-5 block text-sm font-medium text-black dark:text-white"
-                                  >
-                                    Koordinat Bujur
-                                  </label>
-                                  <input
-                                    type="text"
-                                    placeholder="108.5538 BT"
-                                    class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                  />
-                                </div>
-                              </div>
-                            </div>
+                            <button
+                              type="button"
+                              onclick="addPondokPesantrenFields()"
+                              class="mt-5 inline-flex items-center justify-center rounded-md bg-primary px-5 py-3 text-center font-medium text-white hover:bg-opacity-90"
+                            >
+                              Tambah Pondok Pesantren
+                            </button>
                           </div>
+                         
 
                           <!-- data inputan sekolah end -->
                         </div>
@@ -1590,24 +423,77 @@
     </div>
     <!-- ===== Page Wrapper End ===== -->
 
-      <script>
-                    function addPotensiWisataFields() {
-                        // Clone the first 'potensi-wisata-fields' div
-                        const container = document.getElementById('potensiWisataContainer');
-                        const fields = document.querySelector('.potensi-wisata-fields');
-                        const clone = fields.cloneNode(true);
+    <script>
+      // menabhah form sekolah
 
-                        // Clear values in the cloned fields
-                        const inputs = clone.querySelectorAll('input');
-                        const selects = clone.querySelectorAll('select');
+      function addSekolahFields() {
+    // Clone the first 'daftar-sekolah-fields' div
+    const container = document.getElementById('SekolahContainer');
+    const fields = document.querySelector('.daftar-sekolah-fields');
+    const clone = fields.cloneNode(true);
 
-                        inputs.forEach(input => input.value = '');
-                        selects.forEach(select => select.selectedIndex = 0);
+    // Clear values in the cloned fields
+    const inputs = clone.querySelectorAll('input');
+    const selects = clone.querySelectorAll('select');
 
-                        // Append the cleared clone to the container
-                        container.appendChild(clone);
-                    }
-                </script>
+    inputs.forEach((input) => (input.value = ''));
+    selects.forEach((select) => (select.selectedIndex = 0));
+
+    // Create a delete button and add it to the clone
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Hapus Sekolah';
+    deleteButton.type = 'button';
+
+    // Add Tailwind classes for styling (optional)
+    deleteButton.className = 'mt-5 inline-flex items-center justify-center rounded-md bg-red-500 px-5 py-3 text-center font-medium text-white hover:bg-opacity-90';
+
+    // Add delete functionality to remove the cloned element
+    deleteButton.onclick = function() {
+        container.removeChild(clone);
+    };
+
+    // Append the delete button to the clone
+    clone.appendChild(deleteButton);
+
+    // Append the cleared clone to the container
+    container.appendChild(clone);
+}
+
+
+      // menambah form pondok pesantren
+      function addPondokPesantrenFields() {
+        // Clone the first 'daftar-sekolah-fields' div
+        const container = document.getElementById('pondokPesantren');
+        const fields = document.querySelector('.daftar-pondokPesantren-fields');
+        const clone = fields.cloneNode(true);
+
+        // Clear values in the cloned fields
+        const inputs = clone.querySelectorAll('input');
+        const selects = clone.querySelectorAll('select');
+
+        inputs.forEach((input) => (input.value = ''));
+        selects.forEach((select) => (select.selectedIndex = 0));
+
+         // Create a delete button and add it to the clone
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Hapus Sekolah';
+    deleteButton.type = 'button';
+
+    // Add Tailwind classes for styling (optional)
+    deleteButton.className = 'mt-5 inline-flex items-center justify-center rounded-md bg-red-500 px-5 py-3 text-center font-medium text-white hover:bg-opacity-90';
+
+    // Add delete functionality to remove the cloned element
+    deleteButton.onclick = function() {
+        container.removeChild(clone);
+    };
+
+    // Append the delete button to the clone
+    clone.appendChild(deleteButton);
+
+        // Append the cleared clone to the container
+        container.appendChild(clone);
+      }
+    </script>
 
     <script>
       function dropdown() {

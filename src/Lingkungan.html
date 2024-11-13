@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        Form Elements | TailAdmin - Tailwind CSS Admin Dashboard Template
+    </title>
+</head>
+
+<body
+    x-data="{ page: 'formElements', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-init="
+          darkMode = JSON.parse(localStorage.getItem('darkMode'));
+          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+    :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}">
+    <!-- ===== Preloader Start ===== -->
+    <include src="./partials/preloader.html"></include>
+    <!-- ===== Preloader End ===== -->
+
+    <!-- ===== Page Wrapper Start ===== -->
+    <div class="flex h-screen overflow-hidden">
+        <!-- ===== Sidebar Start ===== -->
+        <include src="./partials/sidebar.html"></include>
+        <!-- ===== Sidebar End ===== -->
+
+        <!-- ===== Content Area Start ===== -->
+        <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+            <!-- ===== Header Start ===== -->
+            <include src="./partials/header.html" />
+            <!-- ===== Header End ===== -->
+
+            <!-- ===== Main Content Start ===== -->
+            <main>
+                <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+                    <!-- Breadcrumb Start -->
+                    <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <h2 class="text-title-md2 font-bold text-black dark:text-white">
+                            Lingkungan
+                        </h2>
+
+                            
+                        <nav>
+                            <ol class="flex items-center gap-2">
+                                <li>
+                                    <a class="font-medium" href="index.html">Dashboard /</a>
+                                </li>
+                                <li class="font-medium text-primary">Pariwisata</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <!-- Breadcrumb End -->
+
+                    <!-- ====== Form Elements Section Start -->
+                    <div class="grid">
+                        <div class="flex flex-col gap-9">
+                            <form action="" method="post">
+                                <!-- Input Fields -->
+                                <div
+                                    class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+                                    <div class="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
+                                        <h3 class="font-medium text-black dark:text-white">
+                                            Nama Sungai yang melintasi wilayah desa Menurut Desa/Kelurahan
+                                        </h3>
+                                    </div>
+                                    <div class="flex flex-col gap-5.5 p-6.5">
+                                        <div>
+
+                                            <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                                                Nama Desa
+                                            </label>
+                                            <select id="villageNameSelect" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
+                                                <option value="" class="text-body" disabled selected>Pilih Nama Desa</option>
+                                            </select>
+                                        
+                                            <label class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white">
+                                                Kode Desa
+                                            </label>
+                                            <select disabled id="villageCodeSelect" class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black" :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
+                                              <option value="" class="text-body" disabled selected>Otomatis Terisi</option>
+                                            </select>
+                                              
+                                            <script>
+                                           document.addEventListener("DOMContentLoaded", function () {
+                                              const apiUrl = "https://script.google.com/macros/s/AKfycbxQ6XoS1RW6UZHRxV3dBiVWb2WsIQVNcwI9_yB7FErj5cyXWZ51FTStmTlD_7bAa5zV/exec";  // Update with actual API URL
+                        
+                                              fetch(apiUrl)
+                                                  .then(response => {
+                                                      if (!response.ok) {
+                                                          throw new Error("Network response was not ok");
+                                                      }
+                                                      return response.json();
+                                                  })
+                                                  .then(data => {
+                                                      try {
+                                                          console.log("Received data:", data);  // Log data to check the structure
+                                                          
+                                                          // Akses data.data karena data adalah objek yang berisi array di dalam properti data
+                                                          const villages = data.data;
+                        
+                                                          if (Array.isArray(villages)) {
+                                                              const villageNameSelect = document.getElementById("villageNameSelect");
+                                                              const villageCodeSelect = document.getElementById("villageCodeSelect");
+                        
+                                                              // Clear previous options
+                                                              villageNameSelect.innerHTML = '<option value="" class="text-body" disabled selected>Pilih Nama Desa</option>';
+                                                              villageCodeSelect.innerHTML = '<option value="" class="text-body" disabled selected>Otomatis Terisi</option>';
+                        
+                                                              // Sort data alphabetically by village name
+                                                              villages.sort((a, b) => a['Nama_Desa'].localeCompare(b['Nama_Desa']));
+                        
+                                                              // Populate both select elements
+                                                              villages.forEach(village => {
+                                                                  // Add to code select
+                                                                  const codeOption = new Option(village['Kode_Desa'], village['Kode_Desa']);
+                                                                  villageCodeSelect.add(codeOption);
+                                                                  
+                                                                  // Add to name select
+                                                                  const nameOption = new Option(village['Nama_Desa'], village['Kode_Desa']);
+                                                                  villageNameSelect.add(nameOption);
+                                                              });
+                        
+                                                              // Add change event listeners for synchronization
+                                                              villageCodeSelect.addEventListener('change', (e) => {
+                                                                  villageNameSelect.value = e.target.value;
+                                                              });
+                        
+                                                              villageNameSelect.addEventListener('change', (e) => {
+                                                                  villageCodeSelect.value = e.target.value;
+                                                              });
+                                                          } else {
+                                                              console.error("Data is not an array.");
+                                                          }
+                                                      } catch (error) {
+                                                          console.error('Error processing village data:', error);
+                                                          villageCodeSelect.innerHTML = '<option>Error loading data</option>';
+                                                          villageNameSelect.innerHTML = '<option>Error loading data</option>';
+                                                      }
+                                                  })
+                                                  .catch(error => {
+                                                      console.error("Error loading village data:", error);
+                                                  });
+                                          });
+                                          </script>
+                                            <label
+                                                class="mb-3 block text-sm font-medium text-black dark:text-white mt-5">
+                                                Nama Potensi Wisata Desa
+                                            </label>
+                                            <input type="text" placeholder="Isi nama potensi"
+                                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
+
+                                            <label
+                                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white">
+                                                Jenis Wisata
+                                            </label>
+                                            <select
+                                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
+                                                @change="isOptionSelected = true">
+                                                <option value="" class="text-body" disabled selected>Pilih Jenis Wisata
+                                                </option>
+                                                <option value="" class="text-body">WISATA ALAM</option>
+                                                <option value="" class="text-body">WISATA BUATAN</option>
+                                                <option value="" class="text-body">WISATA RELIGI</option>
+                                                <option value="" class="text-body">WISATA BUDAYA</option>
+                                            </select>
+
+                                            <label
+                                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white">
+                                                Titik Koordinat
+                                            </label>
+
+                                            <div class="flex w-full space-x-5">
+                                                <div class="koordinat_lintang w-full">
+                                                    <label
+                                                        class="mb-5 block text-sm font-medium text-black dark:text-white">
+                                                        Koordinat Lintang
+                                                    </label>
+                                                    <input type="text" placeholder="-6.8796 LS"
+                                                        class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
+                                                </div>
+
+                                                <div class="koordinat_bujur w-full">
+                                                    <label
+                                                        class="mb-5 block text-sm font-medium text-black dark:text-white">
+                                                        Koordinat Bujur
+                                                    </label>
+                                                    <input type="text" placeholder="108.5538 BT"
+                                                        class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
+                                                </div>
+                                            </div>
+                                            <button type="submit"
+                                                class="mt-10 inline-flex items-center justify-center rounded-md bg-meta-3 px-10 py-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10">
+                                                Simpan
+                                            </button>
+
+                                        </div>
+                            </form>
+
+
+                            <!-- <div>
+                      <label
+                        class="mb-3 block text-sm font-medium text-black dark:text-white"
+                      >
+                        Disabled label
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Disabled label"
+                        disabled=""
+                        class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black"
+                      />
+                    </div> -->
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- ====== Form Elements Section End -->
+        </div>
+        </main>
+        <!-- ===== Main Content End ===== -->
+    </div>
+    <!-- ===== Content Area End ===== -->
+    </div>
+    <!-- ===== Page Wrapper End ===== -->
+
+    <script>
+        function dropdown() {
+            return {
+                options: [],
+                selected: [],
+                show: false,
+                open() {
+                    this.show = true;
+                },
+                close() {
+                    this.show = false;
+                },
+                isOpen() {
+                    return this.show === true;
+                },
+                select(index, event) {
+                    if (!this.options[index].selected) {
+                        this.options[index].selected = true;
+                        this.options[index].element = event.target;
+                        this.selected.push(index);
+                    } else {
+                        this.selected.splice(this.selected.lastIndexOf(index), 1);
+                        this.options[index].selected = false;
+                    }
+                },
+                remove(index, option) {
+                    this.options[option].selected = false;
+                    this.selected.splice(index, 1);
+                },
+                loadOptions() {
+                    const options = document.getElementById('select').options;
+                    for (let i = 0; i < options.length; i++) {
+                        this.options.push({
+                            value: options[i].value,
+                            text: options[i].innerText,
+                            selected:
+                                options[i].getAttribute('selected') != null
+                                    ? options[i].getAttribute('selected')
+                                    : false,
+                        });
+                    }
+                },
+                selectedValues() {
+                    return this.selected.map((option) => {
+                        return this.options[option].value;
+                    });
+                },
+            };
+        }
+    </script>
+</body>
+
+</html>
