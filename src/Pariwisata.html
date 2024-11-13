@@ -120,23 +120,29 @@
                                             </select>
 
                                             <label
-                                                class="mb-3 block text-sm font-medium text-black dark:text-white mt-5">
+                                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white">
                                                 Titik Koordinat
                                             </label>
-                                            <label
-                                                class="mb-3 block text-sm font-medium text-black dark:text-white mt-5">
-                                                Koordinat Lintang
-                                            </label>
-                                            <input type="text" placeholder="Isi Koordinat Lintang"
-                                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
 
-                                            <label
-                                                class="mb-3 block text-sm font-medium text-black dark:text-white mt-5">
-                                                Koordinat Bujur
-                                            </label>
-                                            <input type="text" placeholder="Isi Koordinat Bujur"
-                                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
+                                            <div class="flex w-full space-x-5">
+                                                <div class="koordinat_lintang w-full">
+                                                    <label
+                                                        class="mb-5 block text-sm font-medium text-black dark:text-white">
+                                                        Koordinat Lintang
+                                                    </label>
+                                                    <input type="text" placeholder="-6.8796 LS"
+                                                        class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
+                                                </div>
 
+                                                <div class="koordinat_bujur w-full">
+                                                    <label
+                                                        class="mb-5 block text-sm font-medium text-black dark:text-white">
+                                                        Koordinat Bujur
+                                                    </label>
+                                                    <input type="text" placeholder="108.5538 BT"
+                                                        class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
+                                                </div>
+                                            </div>
                                             <button type="submit"
                                                 class="mt-10 inline-flex items-center justify-center rounded-md bg-meta-3 px-10 py-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10">
                                                 Button
