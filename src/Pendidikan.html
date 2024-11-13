@@ -122,7 +122,7 @@
                       <div class="flex flex-col gap-5.5 p-6.5">
                         <div class=" " id="SekolahContainer">
                           <!-- Dynamic Potensi Wisata Fields Start -->
-                          <div class="daftar-sekolah-fields">
+                          <div class="daftar-sekolah-fields ">
                             <label
                               class="mb-3 block text-sm font-medium text-black dark:text-white"
                             >
@@ -242,8 +242,6 @@
                               Tambah Daftar Sekolah
                             </button>
                           </div>
-
-                         
 
                           <!-- data inputan sekolah end -->
                         </div>
@@ -377,21 +375,15 @@
                                 />
                               </div>
                             </div>
+                            <button
+                              type="button"
+                              onclick="addPondokPesantrenFields()"
+                              class="mt-5 inline-flex items-center justify-center rounded-md bg-primary px-5 py-3 text-center font-medium text-white hover:bg-opacity-90"
+                            >
+                              Tambah Pondok Pesantren
+                            </button>
                           </div>
-                          <button
-                            type="button"
-                            onclick="addPondokPesantrenFields()"
-                            class="mt-5 inline-flex items-center justify-center rounded-md bg-primary px-5 py-3 text-center font-medium text-white hover:bg-opacity-90"
-                          >
-                            Tambah Pondok Pesantren
-                          </button>
-                          <button
-                            type="button"
-                            onclick=""
-                            class="mt-5 inline-flex items-center justify-center rounded-md bg-red-500 px-5 py-3 text-center font-medium text-white hover:bg-opacity-90"
-                          >
-                            Hapus
-                          </button>
+                         
 
                           <!-- data inputan sekolah end -->
                         </div>
@@ -443,9 +435,25 @@
     // Clear values in the cloned fields
     const inputs = clone.querySelectorAll('input');
     const selects = clone.querySelectorAll('select');
-    
+
     inputs.forEach((input) => (input.value = ''));
     selects.forEach((select) => (select.selectedIndex = 0));
+
+    // Create a delete button and add it to the clone
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Hapus Sekolah';
+    deleteButton.type = 'button';
+
+    // Add Tailwind classes for styling (optional)
+    deleteButton.className = 'mt-5 inline-flex items-center justify-center rounded-md bg-red-500 px-5 py-3 text-center font-medium text-white hover:bg-opacity-90';
+
+    // Add delete functionality to remove the cloned element
+    deleteButton.onclick = function() {
+        container.removeChild(clone);
+    };
+
+    // Append the delete button to the clone
+    clone.appendChild(deleteButton);
 
     // Append the cleared clone to the container
     container.appendChild(clone);
@@ -455,7 +463,7 @@
       // menambah form pondok pesantren
       function addPondokPesantrenFields() {
         // Clone the first 'daftar-sekolah-fields' div
-        const containerPondok = document.getElementById('pondokPesantren');
+        const container = document.getElementById('pondokPesantren');
         const fields = document.querySelector('.daftar-pondokPesantren-fields');
         const clone = fields.cloneNode(true);
 
@@ -466,10 +474,24 @@
         inputs.forEach((input) => (input.value = ''));
         selects.forEach((select) => (select.selectedIndex = 0));
 
-        // Append the cleared clone to the container
-        containerPondok.appendChild(clone);
+         // Create a delete button and add it to the clone
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Hapus Sekolah';
+    deleteButton.type = 'button';
 
-        
+    // Add Tailwind classes for styling (optional)
+    deleteButton.className = 'mt-5 inline-flex items-center justify-center rounded-md bg-red-500 px-5 py-3 text-center font-medium text-white hover:bg-opacity-90';
+
+    // Add delete functionality to remove the cloned element
+    deleteButton.onclick = function() {
+        container.removeChild(clone);
+    };
+
+    // Append the delete button to the clone
+    clone.appendChild(deleteButton);
+
+        // Append the cleared clone to the container
+        container.appendChild(clone);
       }
     </script>
 
