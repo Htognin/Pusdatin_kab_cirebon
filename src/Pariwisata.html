@@ -81,8 +81,6 @@
                                                 <option value="" class="text-body">Option 2</option>
                                                 <option value="" class="text-body">Option 3</option>
                                             </select>
-
-
                                             <label
                                                 class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white">
                                                 Nama Desa
@@ -96,53 +94,90 @@
                                                 <option value="" class="text-body">Option 3</option>
                                             </select>
 
+                                            <div class=" " id="potensiWisataContainer">
+                                                <!-- Dynamic Potensi Wisata Fields Start -->
+                                                <div class="potensi-wisata-fields">
+                                                    <label
+                                                        class="mb-3 block text-sm font-medium text-black dark:text-white mt-5">
+                                                        Nama Potensi Wisata Desa
+                                                    </label>
+                                                    <input type="text" placeholder="Isi nama potensi"
+                                                        class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
+
+                                                    <label
+                                                        class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white">
+                                                        Jenis Wisata
+                                                    </label>
+                                                    <select
+                                                        class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
+                                                        :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
+                                                        @change="isOptionSelected = true">
+                                                        <option value="" class="text-body" disabled selected>Pilih Jenis
+                                                            Wisata
+                                                        </option>
+                                                        <option value="" class="text-body">WISATA ALAM</option>
+                                                        <option value="" class="text-body">WISATA BUATAN</option>
+                                                        <option value="" class="text-body">WISATA RELIGI</option>
+                                                        <option value="" class="text-body">WISATA BUDAYA</option>
+                                                    </select>
+                                                    <label
+                                                        class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white">
+                                                        Titik Koordinat
+                                                    </label>
+
+                                                    <div class="flex w-full space-x-5">
+                                                        <div class="koordinat_lintang w-full">
+                                                            <label
+                                                                class="mb-5 block text-sm font-medium text-black dark:text-white">
+                                                                Koordinat Lintang
+                                                            </label>
+                                                            <input type="text" placeholder="-6.8796 LS"
+                                                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
+                                                        </div>
+
+                                                        <div class="koordinat_bujur w-full">
+                                                            <label
+                                                                class="mb-5 block text-sm font-medium text-black dark:text-white">
+                                                                Koordinat Bujur
+                                                            </label>
+                                                            <input type="text" placeholder="108.5538 BT"
+                                                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="button" onclick="addPotensiWisataFields()"
+                                                class="mt-5 inline-flex items-center justify-center rounded-md bg-primary px-5 py-3 text-center font-medium text-white hover:bg-opacity-90">
+                                                Tambah Potensi Wisata
+                                            </button>
+                                            </div>
+                                            <div
+                                    class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mt-5">
+                                    <div class="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
+                                        <h3 class="font-medium text-black dark:text-white">
+                                            Jumlah Usaha Jasa Akomodasi
+                                        </h3>
+                                    </div>
+                                    <div class="flex flex-col gap-5.5 p-6.5">
+                                        <div>
                                             <label
                                                 class="mb-3 block text-sm font-medium text-black dark:text-white mt-5">
-                                                Nama Potensi Wisata Desa
+                                                Hotel (unit)
                                             </label>
-                                            <input type="text" placeholder="Isi nama potensi"
-                                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
-
+                                            <input type="number" placeholder="Isi angka/jumlah" min="0" step="1"
+                                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col gap-5.5 p-6.5">
+                                        <div>
                                             <label
-                                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white">
-                                                Jenis Wisata
+                                                class="mb-3 block text-sm font-medium text-black dark:text-white mt-5">
+                                                Hotel (unit)
                                             </label>
-                                            <select
-                                                class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input"
-                                                :class="isOptionSelected &amp;&amp; 'text-black dark:text-white'"
-                                                @change="isOptionSelected = true">
-                                                <option value="" class="text-body" disabled selected>Pilih Jenis Wisata
-                                                </option>
-                                                <option value="" class="text-body">WISATA ALAM</option>
-                                                <option value="" class="text-body">WISATA BUATAN</option>
-                                                <option value="" class="text-body">WISATA RELIGI</option>
-                                                <option value="" class="text-body">WISATA BUDAYA</option>
-                                            </select>
-
-                                            <label
-                                                class="mb-3 mt-10 block text-sm font-medium text-black dark:text-white">
-                                                Titik Koordinat
-                                            </label>
-
-                                            <div class="flex w-full space-x-5">
-                                                <div class="koordinat_lintang w-full">
-                                                    <label
-                                                        class="mb-5 block text-sm font-medium text-black dark:text-white">
-                                                        Koordinat Lintang
-                                                    </label>
-                                                    <input type="text" placeholder="-6.8796 LS"
-                                                        class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
-                                                </div>
-
-                                                <div class="koordinat_bujur w-full">
-                                                    <label
-                                                        class="mb-5 block text-sm font-medium text-black dark:text-white">
-                                                        Koordinat Bujur
-                                                    </label>
-                                                    <input type="text" placeholder="108.5538 BT"
-                                                        class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
-                                                </div>
-                                            </div>
+                                            <input type="number" placeholder="Isi angka/jumlah" min="0" step="1"
+                                                class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
+                                        </div>
+                                    </div>
+                                           
                                             <button type="submit"
                                                 class="mt-10 inline-flex items-center justify-center rounded-md bg-meta-3 px-10 py-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10">
                                                 Button
@@ -150,27 +185,30 @@
 
                                         </div>
                             </form>
-
-
-                            <!-- <div>
-                      <label
-                        class="mb-3 block text-sm font-medium text-black dark:text-white"
-                      >
-                        Disabled label
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="Disabled label"
-                        disabled=""
-                        class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black"
-                      />
-                    </div> -->
                         </div>
                     </div>
-
-
                 </div>
                 <!-- ====== Form Elements Section End -->
+
+
+                <script>
+                    function addPotensiWisataFields() {
+                        // Clone the first 'potensi-wisata-fields' div
+                        const container = document.getElementById('potensiWisataContainer');
+                        const fields = document.querySelector('.potensi-wisata-fields');
+                        const clone = fields.cloneNode(true);
+
+                        // Clear values in the cloned fields
+                        const inputs = clone.querySelectorAll('input');
+                        const selects = clone.querySelectorAll('select');
+
+                        inputs.forEach(input => input.value = '');
+                        selects.forEach(select => select.selectedIndex = 0);
+
+                        // Append the cleared clone to the container
+                        container.appendChild(clone);
+                    }
+                </script>
         </div>
         </main>
         <!-- ===== Main Content End ===== -->
