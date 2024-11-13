@@ -68,7 +68,7 @@
                                         <div>
 
                                             <label
-                                                class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white">
+                                                class="mb-3 block text-sm font-medium text-black dark:text-white">
                                                 Kode Desa
                                             </label>
                                             <select
@@ -96,7 +96,7 @@
 
                                             <div class=" " id="potensiWisataContainer">
                                                 <!-- Dynamic Potensi Wisata Fields Start -->
-                                                <div class="potensi-wisata-fields">
+                                                <div class="potensi-wisata-fields original">
                                                     <label
                                                         class="mb-3 block text-sm font-medium text-black dark:text-white mt-5">
                                                         Nama Potensi Wisata Desa
@@ -144,14 +144,19 @@
                                                                 class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
                                                         </div>
                                                     </div>
+                                                    <button type="button" onclick="addPotensiWisataFields()"
+                                                        class="mt-5 inline-flex items-center justify-center rounded-md bg-primary px-5 py-3 text-center font-medium text-white hover:bg-opacity-90">
+                                                        Tambah Potensi Wisata
+                                                    </button>
                                                 </div>
-                                                <button type="button" onclick="addPotensiWisataFields()"
-                                                class="mt-5 inline-flex items-center justify-center rounded-md bg-primary px-5 py-3 text-center font-medium text-white hover:bg-opacity-90">
-                                                Tambah Potensi Wisata
-                                            </button>
                                             </div>
-                                            <div
-                                    class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mt-5">
+
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark mt-10">
                                     <div class="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
                                         <h3 class="font-medium text-black dark:text-white">
                                             Jumlah Usaha Jasa Akomodasi
@@ -160,43 +165,37 @@
                                     <div class="flex flex-col gap-5.5 p-6.5">
                                         <div>
                                             <label
-                                                class="mb-3 block text-sm font-medium text-black dark:text-white mt-5">
+                                                class="mb-3 block text-sm font-medium text-black dark:text-white">
                                                 Hotel (unit)
                                             </label>
-                                            <input type="number" placeholder="Isi angka/jumlah" min="0" step="1"
+                                            <input type="number" placeholder="Isi angka/jumlah" min="0"
+                                                step="1"
                                                 class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col gap-5.5 p-6.5">
-                                        <div>
                                             <label
                                                 class="mb-3 block text-sm font-medium text-black dark:text-white mt-5">
-                                                Hotel (unit)
+                                                Penginapan (unit)
                                             </label>
-                                            <input type="number" placeholder="Isi angka/jumlah" min="0" step="1"
+                                            <input type="number" placeholder="Isi angka/jumlah" min="0"
+                                                step="1"
                                                 class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary" />
-                                        </div>
-                                    </div>
-                                           
-                                            <button type="submit"
-                                                class="mt-10 inline-flex items-center justify-center rounded-md bg-meta-3 px-10 py-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10">
-                                                Button
-                                            </button>
 
                                         </div>
+                                    </div>
+                                </div>
+                                <button type="submit"
+                                    class="mt-10 inline-flex items-center justify-center rounded-md bg-meta-3 px-10 py-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10">
+                                    Button
                             </form>
                         </div>
                     </div>
                 </div>
                 <!-- ====== Form Elements Section End -->
-
-
                 <script>
                     function addPotensiWisataFields() {
                         // Clone the first 'potensi-wisata-fields' div
                         const container = document.getElementById('potensiWisataContainer');
-                        const fields = document.querySelector('.potensi-wisata-fields');
-                        const clone = fields.cloneNode(true);
+                        const originalFields = document.querySelector('.potensi-wisata-fields');
+                        const clone = originalFields.cloneNode(true);
 
                         // Clear values in the cloned fields
                         const inputs = clone.querySelectorAll('input');
@@ -204,6 +203,17 @@
 
                         inputs.forEach(input => input.value = '');
                         selects.forEach(select => select.selectedIndex = 0);
+
+                        // Add delete button only to the cloned sections
+                        const deleteButton = document.createElement('button');
+                        deleteButton.type = 'button';
+                        deleteButton.className = 'mt-5 inline-flex items-center justify-center rounded-md bg-red-500 px-5 py-3 text-center font-medium text-white hover:bg-opacity-90';
+                        deleteButton.innerText = 'Hapus Potensi Wisata';
+                        deleteButton.onclick = function () {
+                            container.removeChild(clone);
+                        };
+
+                        clone.appendChild(deleteButton);
 
                         // Append the cleared clone to the container
                         container.appendChild(clone);
