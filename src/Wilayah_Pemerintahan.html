@@ -60,7 +60,7 @@
             <div class="grid">
               <div class="flex flex-col gap-9">
                 <form action="" method="post">
-<!-- Input Fields -->
+                <!-- Input Fields -->
                 <div
                   class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
                 >
@@ -83,63 +83,73 @@
                     <label class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white">
                         Kode Desa
                     </label>
-                    <select id="villageCodeSelect" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 pl-5 pr-12 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
-                        <option value="" class="text-body" disabled selected>Pilih Kode Desa</option>
+                    <select disabled id="villageCodeSelect" class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black" :class="isOptionSelected && 'text-black dark:text-white'" @change="isOptionSelected = true">
+                      <option value="" class="text-body" disabled selected>Otomatis Terisi</option>
                     </select>
                       
                     <script>
-                     document.addEventListener("DOMContentLoaded", function () {
-                        const apiUrl = "https://script.google.com/macros/s/AKfycbxQ6XoS1RW6UZHRxV3dBiVWb2WsIQVNcwI9_yB7FErj5cyXWZ51FTStmTlD_7bAa5zV/exec";  // Update with actual API URL
+                   document.addEventListener("DOMContentLoaded", function () {
+                      const apiUrl = "https://script.google.com/macros/s/AKfycbxQ6XoS1RW6UZHRxV3dBiVWb2WsIQVNcwI9_yB7FErj5cyXWZ51FTStmTlD_7bAa5zV/exec";  // Update with actual API URL
 
-                        fetch(apiUrl)
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error("Network response was not ok");
-                                }
-                                return response.json();
-                            })
-                            .then(data => {
-                                console.log("Received data:", data);  // Log data to check the structure
+                      fetch(apiUrl)
+                          .then(response => {
+                              if (!response.ok) {
+                                  throw new Error("Network response was not ok");
+                              }
+                              return response.json();
+                          })
+                          .then(data => {
+                              try {
+                                  console.log("Received data:", data);  // Log data to check the structure
+                                  
+                                  // Akses data.data karena data adalah objek yang berisi array di dalam properti data
+                                  const villages = data.data;
 
-                                // Akses data.data karena data adalah objek yang berisi array di dalam properti data
-                                const villages = data.data; 
+                                  if (Array.isArray(villages)) {
+                                      const villageNameSelect = document.getElementById("villageNameSelect");
+                                      const villageCodeSelect = document.getElementById("villageCodeSelect");
 
-                                if (Array.isArray(villages)) {
-                                    const villageNameSelect = document.getElementById("villageNameSelect");
-                                    const villageCodeSelect = document.getElementById("villageCodeSelect");
+                                      // Clear previous options
+                                      villageNameSelect.innerHTML = '<option value="" class="text-body" disabled selected>Pilih Nama Desa</option>';
+                                      villageCodeSelect.innerHTML = '<option value="" class="text-body" disabled selected>Otomatis Terisi</option>';
 
-                                    // Clear previous options
-                                    villageNameSelect.innerHTML = '<option value="" class="text-body" disabled selected>Pilih Nama_Desa</option>';
-                                    villageCodeSelect.innerHTML = '<option value="" class="text-body" disabled selected>Pilih Kode_Desa</option>';
+                                      // Sort data alphabetically by village name
+                                      villages.sort((a, b) => a['Nama_Desa'].localeCompare(b['Nama_Desa']));
 
-                                    villages.forEach(village => {
-                                        if (village["Nama_Desa"] && village["Kode_Desa"]) {
-                                            // Nama_Desa dropdown
-                                            const nameOption = document.createElement("option");
-                                            nameOption.value = village["Nama_Desa"];
-                                            nameOption.textContent = village["Nama_Desa"];
-                                            villageNameSelect.appendChild(nameOption);
-
-                                            // Kode_Desa dropdown
-                                            const codeOption = document.createElement("option");
-                                            codeOption.value = village["Kode_Desa"];
-                                            codeOption.textContent = village["Kode_Desa"];
-                                            villageCodeSelect.appendChild(codeOption);
-                                        }
-                                    });
-                                } else {
-                                    console.error("Data is not an array.");
-                                }
-                            })
-                            .catch(error => {
-                                console.error("Error loading village data:", error);
-                            });
-                    });
-
-                  </script>
-                      
+                                      // Populate both select elements
+                                      villages.forEach(village => {
+                                          // Add to code select
+                                          const codeOption = new Option(village['Kode_Desa'], village['Kode_Desa']);
+                                          villageCodeSelect.add(codeOption);
                                           
+                                          // Add to name select
+                                          const nameOption = new Option(village['Nama_Desa'], village['Kode_Desa']);
+                                          villageNameSelect.add(nameOption);
+                                      });
 
+                                      // Add change event listeners for synchronization
+                                      villageCodeSelect.addEventListener('change', (e) => {
+                                          villageNameSelect.value = e.target.value;
+                                      });
+
+                                      villageNameSelect.addEventListener('change', (e) => {
+                                          villageCodeSelect.value = e.target.value;
+                                      });
+                                  } else {
+                                      console.error("Data is not an array.");
+                                  }
+                              } catch (error) {
+                                  console.error('Error processing village data:', error);
+                                  villageCodeSelect.innerHTML = '<option>Error loading data</option>';
+                                  villageNameSelect.innerHTML = '<option>Error loading data</option>';
+                              }
+                          })
+                          .catch(error => {
+                              console.error("Error loading village data:", error);
+                          });
+                  });
+                  </script>
+                    
                       <label
                         class="mb-3 mt-5 block text-sm font-medium text-black dark:text-white"
                       >
@@ -147,7 +157,7 @@
                       </label>
                       <input
                         type="text"
-                        placeholder="Klasifikasi Desa (Swasembada/ Swakarya/ Swadaya)"
+                        placeholder="Swadaya"
                         class="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                       />
 
